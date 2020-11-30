@@ -1,0 +1,5 @@
+# Function dependencies, for example:
+# package>=version
+requests==2.25.0
+#Developer
+functions-framework==2.0.0

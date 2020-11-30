@@ -6,11 +6,11 @@ Esse repositório tem o fim de apresentar o teste de engenharia para a SAS Educa
 
 Existe dois desafios, o primeiro desafio é para fazer um fluxo de leitura, salvamento e leitura de um dado provindo de um json pré definido.
 
-## Resolução proposta
+## Resolução proposta - Objetivo 1
 
 Pensando em não ter a necessidade de ter uma IDE, que seja escalável e em ser portável, fiz a utilização das ferramentas do Google Cloud Platform, em um ambiente de desenvolvimento que tenho.
 
-## Arquitetura
+### Arquitetura
 
 <p align="center">
 <a href="https://miro.com/app/board/o9J_ldxgco4=/">
@@ -37,15 +37,15 @@ Se não houver todos os campos, é retornado uma mensagem de erro para o usuári
 
 O end point é uma função post também, para fazer o download desses dados, através do Firestore.
 
-## Scripts GitLab
+### Scripts GitLab
 
-Os Scripts com os códigos que estão online nas Cloud Functions estão no Git Lab, pois o CI/CD com o GCP é extremamente funcional.
+Os Scripts com os códigos que estão online nas Cloud Functions estão no Git Lab, pois o CI/CD com o GCP é extremamente funcional. Para mais detalhes, basta seguir os links listados abaixo:
 
 - [Recebimento do Json](https://gitlab.com/sas-educacao-teste-engenharia/test-input-data-json)
 - [Manipulação para extração](https://gitlab.com/sas-educacao-teste-engenharia/test_save_trusted_zone)
 - [End point](https://gitlab.com/sas-educacao-teste-engenharia/test_download_data)
 
-## Teste
+### Teste
 
 ### Envio de dados
 
@@ -85,11 +85,21 @@ Também existe um código pronto para fazer o request descrito acima, na funçã
 - Envio de dado:
 
 ```
+$ pip install -r reuirements.txt
+$ python send_data.py
+```
+
+```
 Por favor, insira um valor json, ou o caminho de um arquivo json que você deseje enviar: {your_data: your_data}
 Por favor, insira a chave de segurança: your_token
 ```
 
 - Envio de dado através de arquivo:
+
+```
+$ pip install -r reuirements.txt
+$ python send_data.py
+```
 
 ```
 Por favor, insira um valor json, ou o caminho de um arquivo json que você deseje enviar: C:\your_repository\your_file.json
@@ -135,6 +145,13 @@ Existe um código pronto para fazer o request para extração, na função `get_
 - Extração do dado pelo ID:
 
 ```
+$ pip install -r reuirements.txt
+$ python get_data.py
+```
+
+Exemplo:
+
+```
 Por favor, insira o número da opção que você deseja:
 1- ID do documento
 2- Filtrar documento
@@ -148,6 +165,13 @@ Por favor, insira a chave de segurança: your_token
 O retorno será um json com o documento.
 
 - Extração do dado por filtro:
+
+```
+$ pip install -r reuirements.txt
+$ python get_data.py
+```
+
+Exemplo:
 
 ```
 Por favor, insira o número da opção que você deseja:
@@ -165,3 +189,27 @@ Por favor, insira a chave de segurança: your_token
 ```
 
 O retorno será um array com os documentos.
+
+## Resolução proposta - Objetivo 2
+
+### Arquitetura
+
+<p align="center">
+<a href="https://miro.com/app/board/o9J_ldxgco4=/">
+  <img src="https://i.ibb.co/wC5R0VT/arquitetura-o2.png" /></a>
+</p>
+
+Para a construção das tabelas pode ser feito o salvamento utilizando o Postgresql, utilizando a chave primária dele o property_id e colocando todos os campos solicitados do desafio (sendo as colunas da tabela 1: property_id,
+property_name,
+question_id,
+question_statement,
+assessment_id,
+assessment_type,
+assessment_name.
+E para tabela 2: property_id,
+property_name,
+property_size,
+assessment_id,
+assessment_type,
+assessment_name,
+assessment_year), mas com todos os campos podendo aceitar campos null, minha escolha pelo postgresql é feita pensando na necessidade de fazer interpolações, pois esse banco já contem alguns métodos simples, mas extremamente poderosos, para se fazer interpolações e é possível mantê-lo em plataformas online como o Heroku ou em um servidor local ou cloud.
