@@ -98,6 +98,38 @@ Por favor, insira a chave de segurança: your_token
 
 ### Extração de dados
 
+https://us-central1-weather-1-a2ea6.cloudfunctions.net/test_input_data_json | POST
+
+```
+headers = {
+  'Authorization': 'Bearer <your_token>,
+  'Content-Type': 'application/json'
+}
+body = {
+        "id_document": value [int]
+    }
+```
+
+ou
+
+```
+headers = {
+  'Authorization': 'Bearer <your_token>,
+  'Content-Type': 'application/json'
+}
+body = {
+    "name_filter": value [string],
+    "value_filter": value [string or array],
+    "value_operator": value [string]
+}
+```
+
+Os retornos possiveis são:
+
+- **200**: Extração feita com sucesso.
+- **401**: Chave de segurança incorreta ou dado para extração faltando.
+- **405**: Método não encontrado.
+
 Existe um código pronto para fazer o request para extração, na função `get_data.py`, basta executá-la, aparecerá as mensagens, fazendo as solicitações como no exemplo abaixo.
 
 - Extração do dado pelo ID:
@@ -133,9 +165,3 @@ Por favor, insira a chave de segurança: your_token
 ```
 
 O retorno será um array com os documentos.
-
-Os retornos possiveis são:
-
-- **200**: Extração feita com sucesso.
-- **401**: Chave de segurança incorreta ou dado para extração faltando.
-- **405**: Método não encontrado.
