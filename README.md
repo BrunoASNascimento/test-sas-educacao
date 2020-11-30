@@ -8,7 +8,7 @@ Existe dois desafios, o primeiro desafio é para fazer um fluxo de leitura, salv
 
 ## Resolução proposta
 
-Pensando em não ter a necessidade de ter uma IDE, que seja escalável e em ser portável, fiz a utilização das ferramentas do Google Cloud Platform, mas comentarei nos passos, outras possíveis soluções.
+Pensando em não ter a necessidade de ter uma IDE, que seja escalável e em ser portável, fiz a utilização das ferramentas do Google Cloud Platform, em um ambiente de desenvolvimento que tenho.
 
 ## Arquitetura
 
